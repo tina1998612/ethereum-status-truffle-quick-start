@@ -32,6 +32,7 @@ Of course, testing of this box requires you to have iOS/Android device with Stat
 
 To make debugging work we run a web server on your device. It runs on port 5561 on both iOS and Android, but only if you enable it.
 To start a server you need to: 
+
 1. Connect your device to a computer
 2. *Android only:* Enable port forwaring by executing `adb forward tcp:5561 tcp:5561`
 3. Open Status application on your device and log in
