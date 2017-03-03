@@ -1,8 +1,10 @@
 # Truffle Box (Status)
 
-This box comes with everything you need to start using smart contracts from a react app on your mobile. This is as barebones as it gets, so nothing stands in your way.
+This box comes with everything you need to start using smart contracts from a react app on your mobile.
 
-## Installation
+Of course, testing of this box requires you to have iOS/Android device with Status installed on it.
+
+## Building
 
 1. Install truffle and an ethereum client. For local development, try EthereumJS TestRPC.
     ```javascript
@@ -25,13 +27,26 @@ This box comes with everything you need to start using smart contracts from a re
     truffle compile
     truffle migrate
     ```
+    
+## Enabling debug mode in Status
 
-5. Run the webpack server for front-end hot reloading. For now, smart contract changes must be manually recompiled and migrated.
+To make debugging work we run a web server on your device. It runs on port 5561 on both iOS and Android, but only if you enable it.
+To start a server you need to: 
+1. Connect your device to a computer
+2. *Android only:* Enable port forwaring by executing `adb forward tcp:5561 tcp:5561`
+3. Open Status application on your device and log in
+4. Open `Console` chat and execute `/debug` command providing `On` as the argument
+
+Please note that the server will start automatically next time you log in with the same credentials. You can easily change this behavior by turning the debug server off (it can be done by executing `/debug` command with `Off` argument)
+
+## Running
+
+1. Run the webpack server for front-end hot reloading. This command also tries to add your DApp to Status (so it requires the debug mode to be established). For now, smart contract changes must be manually recompiled and migrated. 
     ```javascript
     npm run start
     ```
 
-6. Jest is included for testing React components and Truffle's own suite is incldued for smart contracts. Be sure you've compile your contracts before running jest, or you'll receive some file not found errors.
+2. Jest is included for testing React components and Truffle's own suite is included for smart contracts. Be sure you've compiled your contracts before running jest, or you'll get file not found errors.
     ```javascript
     // Runs Jest for component tests.
     npm run test
@@ -40,7 +55,7 @@ This box comes with everything you need to start using smart contracts from a re
     truffle test
     ```
 
-7. To build the application for production, use the build command. A production build will be in the build_webpack folder.
+3. To build the application for production, use the build command. A production build will be in the build_webpack folder.
     ```javascript
     npm run build
     ```
