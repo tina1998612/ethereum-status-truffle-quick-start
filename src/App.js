@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
+import Config from '../truffle.js'
 import Web3 from 'web3'
 
 import './css/oswald.css'
@@ -28,7 +29,9 @@ class App extends Component {
     var self = this
 
     // Get the RPC provider and setup our SimpleStorage contract.
-    const provider = new Web3.providers.HttpProvider('http://localhost:8545')
+    var {host, port} = Config.networks[process.env.NODE_ENV]
+    
+    const provider = new Web3.providers.HttpProvider('http://' + host + ':' + port)
     const contract = require('truffle-contract')
     const simpleStorage = contract(SimpleStorageContract)
     simpleStorage.setProvider(provider)
