@@ -288,7 +288,7 @@ function runDevServer(host, port, protocol) {
 
     if (isInteractive) {
         clearConsole();
-        addStatusDApp(port);
+        addStatusDApp("http://" + host + ":" + port);
         console.log();
     }
     console.log(chalk.cyan('Starting the development server...'));
@@ -296,10 +296,10 @@ function runDevServer(host, port, protocol) {
   });
 }
 
-function addStatusDApp(dappPort) {
+function addStatusDApp(dappUrl) {
   var deviceIP = process.env.IP || 'localhost';
   child.exec(
-    "./node_modules/.bin/status-dev-cli add-dapp --dapp-port " + dappPort + " --ip " + deviceIP,
+    "./node_modules/.bin/status-dev-cli add --dappUrl " + dappUrl + " --ip " + deviceIP,
     {stdio: "inherit"},
     function(error, stdout, stderr) {
       devCliMessages.stdout = stdout;

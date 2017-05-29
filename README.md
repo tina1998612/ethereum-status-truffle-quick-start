@@ -11,9 +11,8 @@ To make debugging work we run a web server on your device. It runs on port 5561 
 To start a server you need to: 
 
 1. Connect your device to a computer
-2. *Android only:* Enable port forwaring by executing `adb forward tcp:5561 tcp:5561`
-3. Open Status application on your device and log in
-4. Open `Console` chat and execute `/debug` command providing `On` as the argument
+2. Open Status application on your device and log in
+3. Open `Console` chat and execute `/debug` command providing `On` as the argument
 
 Please note that the server will start automatically next time you log in with the same credentials. You can easily change this behavior by turning the debug server off (it can be done by executing `/debug` command with `Off` argument)
 
