@@ -39,6 +39,8 @@ var DEFAULT_PORT = process.env.PORT || 3000;
 var compiler;
 var handleCompile;
 var devCliMessages = {};
+var BOT_DIR = "/public/bot"; // should start with slash
+var BOT_SITE_PATH = "/bot/bot.js"; // should start with slash
 
 // You can safely remove this after ejecting.
 // We only use this block for testing of Create React App itself:
@@ -88,6 +90,16 @@ function setupCompiler(host, port, protocol) {
     if (isSuccessful) {
       console.log(chalk.green('Compiled successfully!'));
     }
+
+    var deviceIP = process.env.IP || 'localhost';
+    child.exec(
+      "./node_modules/.bin/status-dev-cli watch $PWD" + BOT_DIR + " --ip " + deviceIP,
+      {stdio: "inherit"},
+      function (error, stdout, stderr) {
+        devCliMessages.stdout = stdout;
+        devCliMessages.stderr = stderr;
+      }
+    );
 
     if (showInstructions) {
       console.log();
@@ -288,7 +300,7 @@ function runDevServer(host, port, protocol) {
 
     if (isInteractive) {
         clearConsole();
-        addStatusDApp("http://" + host + ":" + port);
+        addToStatus("http://" + host + ":" + port);
         console.log();
     }
     console.log(chalk.cyan('Starting the development server...'));
@@ -296,10 +308,10 @@ function runDevServer(host, port, protocol) {
   });
 }
 
-function addStatusDApp(dappUrl) {
+function addToStatus(dappUrl) {
   var deviceIP = process.env.IP || 'localhost';
   child.exec(
-    "./node_modules/.bin/status-dev-cli add --dappUrl " + dappUrl + " --ip " + deviceIP,
+    "./node_modules/.bin/status-dev-cli add --dappUrl " + dappUrl + " --botUrl " + (dappUrl + BOT_SITE_PATH) + " --ip " + deviceIP,
     {stdio: "inherit"},
     function(error, stdout, stderr) {
       devCliMessages.stdout = stdout;
