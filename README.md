@@ -8,7 +8,7 @@ Of course, testing of this box requires you to have iOS/Android device with Stat
 ## Enabling debug mode in Status
 
 To make debugging work we run a web server on your device. It runs on port 5561 on both iOS and Android, but only if you enable it.
-To start a server you need to: 
+To start a server you need to:
 
 1. Connect your device to a computer
 2. Open Status application on your device and log in
@@ -25,9 +25,9 @@ Please note that the server will start automatically next time you log in with t
     npm install -g ethereumjs-testrpc
     ```
 
-2. Clone or download the truffle box of your choice.
+2. Download box.
     ```javascript
-    git clone https://github.com/status-im/truffle-box-status.git
+    truffle unbox truffle-box-status
     ```
 
 3. Install the node dependencies.
@@ -38,17 +38,17 @@ Please note that the server will start automatically next time you log in with t
     ```javascript
     testrpc -p 8546
     ```
-   
+
 5. *If you use Android* then make TestRPC accessible from your device.
     ```javascript
     adb reverse tcp:8546 tcp:8546
     ```
-    
+
 6. Switch node in Status.
     ```javascript
     status-dev-cli switch-node http://localhost:8546
     ```
-    
+
    Of course, there can be options. You can use go-ethereum instead of TestRPC, and instead of port forwarding you can switch to any other accessible node using its IP address.
 
 7. Compile and migrate the contracts.
@@ -56,18 +56,18 @@ Please note that the server will start automatically next time you log in with t
     truffle compile
     truffle migrate
     ```
-    
-8. *If you use Android* the application won't be accessible automatically, since it runs on port 3000 and your 
+
+8. *If you use Android* the application won't be accessible automatically, since it runs on port 3000 and your
    device/emulator knows nothing about it. Execute the following to make web application accessible:
     ```javascript
     adb reverse tcp:3000 tcp:3000
     ```
-    
+
 ## Running
 
 Now it's time to run your application!
 
-1. Run the webpack server for front-end hot reloading. This command also tries to add your DApp to Status (so it requires the debug mode to be established). For now, smart contract changes must be manually recompiled and migrated. 
+1. Run the webpack server for front-end hot reloading. This command also tries to add your DApp to Status (so it requires the debug mode to be established). For now, smart contract changes must be manually recompiled and migrated.
     ```javascript
     npm run start
     ```
@@ -83,7 +83,7 @@ Jest is included for testing React components and Truffle's own suite is include
     // Runs Truffle's test suite for smart contract tests.
     truffle test
     ```
-    
+
 ## Releasing
 
 To build the application for production, use the build command. A production build will be in the build_webpack folder.
