@@ -1,5 +1,5 @@
 # Ethereum Status + Truffle Quick Start Guide
-This repository serves as a demo for the official quick start guide of Status.im 
+This repository serves as a demo for the official quick start guide of [Status.im](https://status.im/) 
 
 ## Usage
 1. Get status app by entering your email [here](https://status.im/). Follow all the instructions until u download the `TestFlight` app
