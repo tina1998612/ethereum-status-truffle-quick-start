@@ -14,17 +14,17 @@ This repository serves as a demo for the official quick start guide of [Status.i
 <br>
 Repeat step 8 if the err msg is cannot connect.
 10. Compile and migrate the contracts.
-    ```javascript
-    truffle compile
-    truffle migrate
-    ```
+```javascript
+truffle compile
+truffle migrate
+```
 11. `npm run start`
 
 # Notice
 *If you use Android* then make TestRPC accessible from your device.
-    ```javascript
-    adb reverse tcp:8546 tcp:8546
-    ```
+```javascript
+adb reverse tcp:8546 tcp:8546
+```
 
 ## Testing
 
