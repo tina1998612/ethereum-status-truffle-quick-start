@@ -30,21 +30,21 @@ Repeat step 8 if the err msg is cannot connect.
 
 Jest is included for testing React components and Truffle's own suite is included for smart contracts. Be sure you've compiled your contracts before running jest, or you'll get file not found errors.
 
-    ```javascript
-    // Runs Jest for component tests.
-    npm run test
+```javascript
+// Runs Jest for component tests.
+npm run test
 
-    // Runs Truffle's test suite for smart contract tests.
-    truffle test
-    ```
+// Runs Truffle's test suite for smart contract tests.
+truffle test
+```
 
 ## Releasing
 
 To build the application for production, use the build command. A production build will be in the build_webpack folder.
 
-    ```javascript
-    npm run build
-    ```
+```javascript
+npm run build
+```
 
 ## FAQ
 
