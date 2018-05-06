@@ -210,7 +210,7 @@ function build(previousSizeMap) {
         console.log('  ' + chalk.cyan('npm') + ' install -g pushstate-server');
       }
       console.log('  ' + chalk.cyan('pushstate-server') + ' build');
-      console.log('  ' + chalk.cyan(openCommand) + ' http://10.89.202.73:9000');
+      console.log('  ' + chalk.cyan(openCommand) + ' http://<machine_ip>:9000');
       console.log();
     }
   });

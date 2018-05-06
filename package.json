@@ -70,7 +70,7 @@
       "<rootDir>[/\\\\](build|docs|node_modules)[/\\\\]"
     ],
     "testEnvironment": "node",
-    "testURL": "http://10.89.202.73",
+    "testURL": "http://<machine_ip>",
     "transform": {
       "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.css$": "<rootDir>\\config\\jest\\cssTransform.js",

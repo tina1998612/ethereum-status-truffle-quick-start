@@ -323,7 +323,7 @@ function addToStatus(dappUrl) {
 
 function run(port) {
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";
-  var host = '10.89.202.73'; // we don't support other hosts at this moment
+  var host = '<machine_ip>'; // we don't support other hosts at this moment
   setupCompiler(host, port, protocol);
   runDevServer(host, port, protocol);
 }
