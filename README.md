@@ -30,8 +30,6 @@ adb reverse tcp:8546 tcp:8546
 
 ## Testing
 
-Jest is included for testing React components and Truffle's own suite is included for smart contracts. Be sure you've compiled your contracts before running jest, or you'll get file not found errors.
-
 ```javascript
 // Runs Jest for component tests.
 npm run test
