@@ -1,10 +1,11 @@
+phone_ip = '10.89.46.94'; // TODO: change this to your mobile phone's ip address
 process.env.NODE_ENV = 'development';
 
 // Load environment variables from .env file. Suppress warnings using silent
 // if this file is missing. dotenv will never modify any environment variables
 // that have already been set.
 // https://github.com/motdotla/dotenv
-require('dotenv').config({silent: true});
+require('dotenv').config({ silent: true });
 
 var chalk = require('chalk');
 var webpack = require('webpack');
@@ -64,7 +65,7 @@ function setupCompiler(host, port, protocol) {
   // recompiling a bundle. WebpackDevServer takes care to pause serving the
   // bundle, so if you refresh, it'll wait instead of serving the old one.
   // "invalid" is short for "bundle invalidated", it doesn't imply any errors.
-  compiler.plugin('invalid', function() {
+  compiler.plugin('invalid', function () {
     if (isInteractive) {
       clearConsole();
     }
@@ -75,7 +76,7 @@ function setupCompiler(host, port, protocol) {
 
   // "done" event fires when Webpack has finished recompiling the bundle.
   // Whether or not you have warnings or errors, you will get this event.
-  compiler.plugin('done', function(stats) {
+  compiler.plugin('done', function (stats) {
     if (isInteractive) {
       clearConsole();
     }
@@ -91,10 +92,10 @@ function setupCompiler(host, port, protocol) {
       console.log(chalk.green('Compiled successfully!'));
     }
 
-    var deviceIP = process.env.IP || 'localhost';
+    var deviceIP = process.env.IP || phone_ip;
     child.exec(
       "./node_modules/.bin/status-dev-cli watch $PWD" + BOT_DIR + " --ip " + deviceIP,
-      {stdio: "inherit"},
+      { stdio: "inherit" },
       function (error, stdout, stderr) {
         devCliMessages.stdout = stdout;
         devCliMessages.stderr = stderr;
@@ -156,7 +157,7 @@ function setupCompiler(host, port, protocol) {
 // We need to provide a custom onError function for httpProxyMiddleware.
 // It allows us to log custom error messages on the console.
 function onProxyError(proxy) {
-  return function(err, req, res){
+  return function (err, req, res) {
     var host = req.headers && req.headers.host;
     console.log(
       chalk.red('Proxy error:') + ' Could not proxy request ' + chalk.cyan(req.url) +
@@ -171,7 +172,7 @@ function onProxyError(proxy) {
     // And immediately send the proper error response to the client.
     // Otherwise, the request will eventually timeout with ERR_EMPTY_RESPONSE on the client side.
     if (res.writeHead && !res.headersSent) {
-        res.writeHead(500);
+      res.writeHead(500);
     }
     res.end('Proxy error: Could not proxy request ' + req.url + ' from ' +
       host + ' to ' + proxy + ' (' + err.code + ').'
@@ -219,7 +220,7 @@ function addMiddleware(devServer) {
     var hpm = httpProxyMiddleware(pathname => mayProxy.test(pathname), {
       target: proxy,
       logLevel: 'silent',
-      onProxyReq: function(proxyReq, req, res) {
+      onProxyReq: function (proxyReq, req, res) {
         // Browers may send Origin headers even with same-origin
         // requests. To prevent CORS issues, we have to change
         // the Origin to match the target URL.
@@ -299,9 +300,9 @@ function runDevServer(host, port, protocol) {
     }
 
     if (isInteractive) {
-        clearConsole();
-        addToStatus("http://" + host + ":" + port);
-        console.log();
+      clearConsole();
+      addToStatus("http://" + host + ":" + port);
+      console.log();
     }
     console.log(chalk.cyan('Starting the development server...'));
     console.log();
@@ -309,11 +310,11 @@ function runDevServer(host, port, protocol) {
 }
 
 function addToStatus(dappUrl) {
-  var deviceIP = process.env.IP || 'localhost';
+  var deviceIP = process.env.IP || phone_ip;
   child.exec(
     "./node_modules/.bin/status-dev-cli add --dappUrl " + dappUrl + " --botUrl " + (dappUrl + BOT_SITE_PATH) + " --ip " + deviceIP,
-    {stdio: "inherit"},
-    function(error, stdout, stderr) {
+    { stdio: "inherit" },
+    function (error, stdout, stderr) {
       devCliMessages.stdout = stdout;
       devCliMessages.stderr = stderr;
     }
@@ -322,7 +323,7 @@ function addToStatus(dappUrl) {
 
 function run(port) {
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";
-  var host = 'localhost'; // we don't support other hosts at this moment
+  var host = '10.89.202.73'; // we don't support other hosts at this moment
   setupCompiler(host, port, protocol);
   runDevServer(host, port, protocol);
 }
@@ -341,7 +342,7 @@ detect(DEFAULT_PORT).then(port => {
     var question =
       chalk.yellow('Something is already running on port ' + DEFAULT_PORT + '.' +
         ((existingProcess) ? ' Probably:\n  ' + existingProcess : '')) +
-        '\n\nWould you like to run the app on another port instead?';
+      '\n\nWould you like to run the app on another port instead?';
 
     prompt(question, true).then(shouldChangePort => {
       if (shouldChangePort) {

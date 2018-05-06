@@ -17,59 +17,29 @@ To start a server you need to:
 Please note that the server will start automatically next time you log in with the same credentials. You can easily change this behavior by turning the debug server off (it can be done by executing `/debug` command with `Off` argument)
 
 
-## Building
+## Usage
 
-1. Install truffle and an ethereum client. For local development, try Ethereum TestRPC.
-    ```javascript
-    npm install -g truffle // Version 3.0.5+ required.
-    npm install -g ethereumjs-testrpc
-    ```
-
-2. Download box.
-    ```javascript
-    truffle unbox truffle-box-status
-    ```
-
-3. Install the node dependencies.
-    ```javascript
-    npm install
-    ```
-4. Run Ethereum RPC on port **8546**. For simplicity and development we will be using Ethereum TestRPC.
-    ```javascript
-    testrpc -p 8546
-    ```
-
-5. *If you use Android* then make TestRPC accessible from your device.
-    ```javascript
-    adb reverse tcp:8546 tcp:8546
-    ```
-
-6. Switch node in Status.
-    ```javascript
-    status-dev-cli switch-node http://localhost:8546
-    ```
-
-   Of course, there can be options. You can use go-ethereum instead of TestRPC, and instead of port forwarding you can switch to any other accessible node using its IP address.
-
-7. Compile and migrate the contracts.
+1. Get status app by entering your email [here](https://status.im/). Follow all the instructions until u download the `TestFlight` app
+2. Clone this repository and navigate to this directory 
+3. Find your phone's IP
+4. Change the phone's IP address at the first line of `scripts/start.js`
+5. `npm install`
+6. `ganache-cli -p 8546` 
+7. Enable debug mode in the Status app. First, `Profile -> Advanced -> Development mode(turn it on)`. Then, `Home -> Status Console -> type /debug -> choose On`. DO NOT CLOSE YOUR PHONE'S SCREEN FROM NOW ON or you will have to enable debug mode again. 
+8. Let Status connect to the test node we just opened instead of Ropsten. Switch node by `status-dev-cli switch-node "http://<machineIP>:8546" --ip <phoneIP>` 
+<br>
+Repeat step 7 if the err msg is cannot connect.
+9. Compile and migrate the contracts.
     ```javascript
     truffle compile
     truffle migrate
     ```
+10. `npm run start`
 
-8. *If you use Android* the application won't be accessible automatically, since it runs on port 3000 and your
-   device/emulator knows nothing about it. Execute the following to make web application accessible:
+# Notice
+*If you use Android* then make TestRPC accessible from your device.
     ```javascript
-    adb reverse tcp:3000 tcp:3000
-    ```
-
-## Running
-
-Now it's time to run your application!
-
-1. Run the webpack server for front-end hot reloading. This command also tries to add your DApp to Status (so it requires the debug mode to be established). For now, smart contract changes must be manually recompiled and migrated.
-    ```javascript
-    npm run start
+    adb reverse tcp:8546 tcp:8546
     ```
 
 ## Testing
