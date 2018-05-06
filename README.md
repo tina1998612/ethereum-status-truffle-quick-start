@@ -10,6 +10,7 @@ This repository serves as a demo for the official quick start guide of [Status.i
 6. Change the machine's IP address by replacing all `<machine_ip>` with your IP (IPv4 address)
 7. Open another terminal window and type `ganache-cli -p 8546` to open a testing node
 8. Enable debug mode in the Status app. First, `Profile -> Advanced -> Development mode(turn it on)`. Then, `Home -> Status Console -> type /debug -> choose On`. DO NOT CLOSE YOUR PHONE'S SCREEN FROM NOW ON or you will have to enable debug mode again. 
+9. Install the Status CLI `npm install -g status-dev-cli`
 9. Let Status connect to the test node we just opened instead of Ropsten. Switch node by `status-dev-cli switch-node "http://<machineIP>:8546" --ip <phoneIP>` 
 <br>
 Repeat step 8 if the err msg is cannot connect.
